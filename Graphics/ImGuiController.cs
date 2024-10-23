@@ -7,7 +7,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using System.Diagnostics;
 using ErrorCode = OpenTK.Graphics.OpenGL4.ErrorCode;
 
-namespace HPEngine;
+namespace HPEngine.Graphics;
 
 public class ImGuiController : IDisposable
 {
