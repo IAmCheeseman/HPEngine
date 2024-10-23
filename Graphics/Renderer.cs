@@ -1,7 +1,7 @@
 using OpenTK.Mathematics;
 using OpenTK.Graphics.OpenGL4;
 
-namespace HPEngine;
+namespace HPEngine.Graphics;
 
 public enum VertexFormat
 {

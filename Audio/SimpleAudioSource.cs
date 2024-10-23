@@ -1,6 +1,6 @@
 using OpenTK.Audio.OpenAL;
 
-namespace HPEngine;
+namespace HPEngine.Audio;
 
 public class SimpleAudioSource : AudioSource
 {

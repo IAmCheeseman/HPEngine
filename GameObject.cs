@@ -1,3 +1,5 @@
+using HPEngine.Graphics;
+
 namespace HPEngine;
 
 public class GameObject

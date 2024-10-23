@@ -1,6 +1,7 @@
 ﻿using ImGuiNET;
 using System.Diagnostics;
 using OpenTK.Mathematics;
+using HPEngine.Graphics;
 
 namespace HPEngine;
 
@@ -25,7 +26,7 @@ public class Context
 
         Renderer = new Renderer(this);
 
-        Input = new Input(this);
+        Input = new Input(Window);
 
         ImGuiController = new ImGuiController(this, Window.Size.X, Window.Size.Y);
     }

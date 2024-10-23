@@ -1,6 +1,6 @@
 using OpenTK.Graphics.OpenGL4;
 
-namespace HPEngine;
+namespace HPEngine.Graphics;
 
 public class RenderTexture : Texture, IRenderTarget, IDisposable
 {

@@ -143,49 +143,49 @@ public enum MouseButtonId
 
 public class Input
 {
-    private Context _context;
+    private Window _window;
     
-    internal Input(Context context)
+    internal Input(Window context)
     {
-        _context = context;
+        _window = context;
     }
 
     public bool IsKeyDown(KeyId key)
     {
-        return _context.Window.Handle.IsKeyDown((Keys)key);
+        return _window.Handle.IsKeyDown((Keys)key);
     }
 
     public bool IsKeyPressed(KeyId key)
     {
-        return _context.Window.Handle.IsKeyPressed((Keys)key);
+        return _window.Handle.IsKeyPressed((Keys)key);
     }
 
     public bool IsKeyReleased(KeyId key)
     {
-        return _context.Window.Handle.IsKeyReleased((Keys)key);
+        return _window.Handle.IsKeyReleased((Keys)key);
     }
 
     public bool IsMouseDown(MouseButtonId mouseButton)
     {
-        return _context.Window.Handle.IsMouseButtonDown(
+        return _window.Handle.IsMouseButtonDown(
             (OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)mouseButton);
     }
 
     public bool IsMousePressed(MouseButtonId mouseButton)
     {
-        return _context.Window.Handle.IsMouseButtonPressed(
+        return _window.Handle.IsMouseButtonPressed(
             (OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)mouseButton);
     }
 
     public bool IsMouseReleased(MouseButtonId mouseButton)
     {
-        return _context.Window.Handle.IsMouseButtonReleased(
+        return _window.Handle.IsMouseButtonReleased(
             (OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)mouseButton);
     }
 
     public Vec2 GetWindowMousePosition()
     {
-        var pos = _context.Window.Handle.MouseState.Position;
+        var pos = _window.Handle.MouseState.Position;
         return new(pos.X, pos.Y);
     }
 }

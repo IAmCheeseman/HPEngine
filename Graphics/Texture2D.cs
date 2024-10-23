@@ -1,8 +1,7 @@
 using OpenTK.Graphics.OpenGL4;
 using StbImageSharp;
 
-namespace HPEngine;
-
+namespace HPEngine.Graphics;
 
 public class Texture2D : Texture, IDisposable
 {

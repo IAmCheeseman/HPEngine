@@ -17,11 +17,11 @@ internal struct InputMapping
 public class InputMap
 {
     Dictionary<string, List<InputMapping>> _mappings = new();
-    Context _context;
+    Input _input;
 
-    public InputMap(Context context)
+    public InputMap(Input input)
     {
-        _context = context;
+        _input = input;
     }
 
     public void CreateMapping(string name, KeyId keyId)
@@ -63,11 +63,11 @@ public class InputMap
             switch (input.Method)
             {
                 case InputMethod.Key:
-                    if (_context.Input.IsKeyDown(input.KeyId))
+                    if (_input.IsKeyDown(input.KeyId))
                         return true;
                     break;
                 case InputMethod.MouseButton:
-                    if (_context.Input.IsMouseDown(input.MouseButtonId))
+                    if (_input.IsMouseDown(input.MouseButtonId))
                         return true;
                     break;
             }

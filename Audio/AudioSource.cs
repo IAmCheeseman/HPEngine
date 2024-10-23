@@ -1,7 +1,7 @@
 using NVorbis;
 using OpenTK.Audio.OpenAL;
 
-namespace HPEngine;
+namespace HPEngine.Audio;
 
 internal class SoundData
 {

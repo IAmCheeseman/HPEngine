@@ -2,7 +2,8 @@ using System;
 using OpenTK.Mathematics;
 using OpenTK.Graphics.OpenGL4;
 
-namespace HPEngine;
+namespace HPEngine.Graphics;
+
 public class Shader : IDisposable
 {
     private bool _disposed = false;

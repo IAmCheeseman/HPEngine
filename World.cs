@@ -1,3 +1,5 @@
+using HPEngine.Graphics;
+
 namespace HPEngine;
 
 struct AddQueueInfo

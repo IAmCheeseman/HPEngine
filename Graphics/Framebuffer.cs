@@ -1,4 +1,4 @@
-namespace HPEngine;
+namespace HPEngine.Graphics;
 
 public class Framebuffer
 {
