@@ -1,19 +1,21 @@
 using HPEngine.Graphics;
+using HPEngine.Audio;
 
-namespace HPEngine;
+namespace HPEngine.Content;
 
-public class Content : IDisposable
+public class ContentManager : IDisposable
 {
     private bool _disposed;
     private Dictionary<string, Texture2D> _textures = new();
+    private Dictionary<string, AudioSource> _audioSources = new();
     private string _assetsPath;
 
-    public Content(string assetsPath)
+    public ContentManager(string assetsPath)
     {
         _assetsPath = assetsPath;
     }
 
-    ~Content()
+    ~ContentManager()
     {
         Dispose(false);
     }
@@ -37,7 +39,7 @@ public class Content : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    public Texture GetTexture(string path)
+    public Texture LoadTexture(string path)
     {
         var fullPath = _assetsPath + path;
         if (_textures.ContainsKey(fullPath))
@@ -45,5 +47,21 @@ public class Content : IDisposable
 
         _textures.Add(fullPath, new Texture2D(path));
         return _textures[fullPath];
+    }
+
+    public AudioSource LoadAudio(string path, int sourceCount = 1)
+    {
+        var fullPath = _assetsPath + path;
+        if (_audioSources.ContainsKey(fullPath))
+            return _audioSources[fullPath];
+        
+        AudioSource source = sourceCount switch
+        {
+            <= 1 => new SimpleAudioSource(path),
+            _ => new PooledAudioSource(path, sourceCount),
+        };
+
+        _audioSources.Add(fullPath, source);
+        return _audioSources[fullPath];
     }
 }

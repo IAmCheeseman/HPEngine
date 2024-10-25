@@ -50,14 +50,18 @@ public class Context
     {
         app.OnStart();
 
+        // FIXME: Should FPS counting and delta time be here?
         float fps = 0f;
         float framesRendered = 0f;
+        var maxFps = 0f;
 
         var fpsSw = new Stopwatch();
         fpsSw.Start();
 
         var deltaSw = new Stopwatch();
         deltaSw.Start();
+
+        var fpsRecord = new List<float>();
 
         TimeSpan dt = deltaSw.Elapsed;
 
@@ -90,6 +94,22 @@ public class Context
 
             app.OnDraw(Renderer);
 
+#if DEBUG
+            var plotHeight = 50f;
+            var i = 0;
+            foreach (var point in fpsRecord)
+            {
+                var percentage = point / maxFps;
+                var height = plotHeight * percentage;
+                var color = new Color(1f - percentage, percentage, 0f);
+                Renderer.SetColor(color);
+                Renderer.Rectangle(
+                        new Vec2(i * 3, plotHeight - height),
+                        new Vec2(2f, height));
+                i++;
+            }
+#endif
+
             Renderer.PrepareNextFrame();
             ImGuiController.Render();
             Window.SwapBuffers();
@@ -98,6 +118,11 @@ public class Context
             if (fpsSw.Elapsed.TotalSeconds >= 1)
             {
                 fps = framesRendered / (float)fpsSw.Elapsed.TotalSeconds;
+                if (fpsRecord.Count > 30)
+                    fpsRecord.RemoveAt(0);
+                if (fps > maxFps)
+                    maxFps = fps;
+                fpsRecord.Add(fps);
                 framesRendered = 0;
                 fpsSw.Restart();
             }
